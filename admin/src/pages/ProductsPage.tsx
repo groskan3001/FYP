@@ -94,21 +94,26 @@ const ProductsPage = () => {
 
     setGeneratingDesc(true);
     try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      const apiKey = import.meta.env.VITE_HF_API_KEY;
+      if (!apiKey || apiKey === 'your_huggingface_api_key_here') {
+        throw new Error('Hugging Face API key is not configured. Please add VITE_HF_API_KEY to your .env file.');
+      }
 
-      // Use REST API directly instead of SDK
+      // Use Serverless Inference API with OpenAI compatibility
       const response = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent',
+        'https://api-inference.huggingface.co/v1/chat/completions',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-goog-api-key': apiKey
+            'Authorization': `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: `Write a compelling product description for an e-commerce website.
+            model: 'Qwen/Qwen2.5-72B-Instruct',
+            messages: [
+              {
+                role: 'user',
+                content: `Write a compelling product description for an e-commerce website.
 
 Product Name: ${name}
 Category: ${category || 'General'}
@@ -122,8 +127,10 @@ Requirements:
 - Professional tone suitable for online shopping
 
 Write only the description, no extra formatting or labels.`
-              }]
-            }]
+              }
+            ],
+            max_tokens: 250,
+            temperature: 0.7
           })
         }
       );
@@ -131,11 +138,11 @@ Write only the description, no extra formatting or labels.`
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error?.message || 'Failed to generate description');
+        throw new Error(data.error?.message || data.message || 'Failed to generate description');
       }
 
-      const description = data.candidates[0].content.parts[0].text;
-      form.setValue('description', description);
+      const description = data.choices?.[0]?.message?.content || '';
+      form.setValue('description', description.trim());
     } catch (error) {
       console.error('AI Generation Error:', error);
       alert('Failed to generate description. Please try again.');
@@ -208,9 +215,9 @@ Write only the description, no extra formatting or labels.`
                   <button type="button" className="btn-icon" onClick={() => openDrawer(product)}>
                     <Pencil size={16} />
                   </button>
-                  <button 
-                    type="button" 
-                    className="btn-icon" 
+                  <button
+                    type="button"
+                    className="btn-icon"
                     onClick={() => deleteProduct.mutate(product._id)}
                     style={{ color: 'var(--color-on-surface-variant)', borderColor: 'var(--color-outline-variant)' }}
                   >
@@ -261,8 +268,8 @@ Write only the description, no extra formatting or labels.`
                   <button
                     type="button"
                     className="btn btn-sm"
-                    style={{ 
-                      background: 'var(--color-primary-fixed)', 
+                    style={{
+                      background: 'var(--color-primary-fixed)',
                       color: 'var(--color-primary)',
                       fontSize: '0.75rem',
                       padding: '0.25rem 0.6rem',
@@ -288,7 +295,7 @@ Write only the description, no extra formatting or labels.`
                 <span>Price <span style={{ color: 'var(--color-error)' }}>*</span></span>
                 <input type="number" step="0.01" min="0" placeholder="0.00" {...form.register('price')} required />
               </label>
-              
+
               <label>
                 <span>Sale Price</span>
                 <input type="number" step="0.01" min="0" placeholder="0.00" {...form.register('salePrice')} />
@@ -305,7 +312,7 @@ Write only the description, no extra formatting or labels.`
                   ))}
                 </select>
               </label>
-              
+
               <label>
                 <span>Stock</span>
                 <input type="number" min="0" placeholder="0" {...form.register('stock')} />
@@ -320,7 +327,7 @@ Write only the description, no extra formatting or labels.`
                 />
                 <small style={{ color: 'var(--color-outline)' }}>Separate multiple URLs with commas</small>
               </label>
-              
+
               <label className="full">
                 <span>Tags</span>
                 <input

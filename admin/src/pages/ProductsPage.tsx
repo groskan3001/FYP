@@ -101,7 +101,7 @@ const ProductsPage = () => {
 
       // Use Serverless Inference API with OpenAI compatibility
       const response = await fetch(
-        'https://api-inference.huggingface.co/v1/chat/completions',
+        'https://router.huggingface.co/v1/chat/completions',
         {
           method: 'POST',
           headers: {
@@ -215,9 +215,9 @@ Write only the description, no extra formatting or labels.`
                   <button type="button" className="btn-icon" onClick={() => openDrawer(product)}>
                     <Pencil size={16} />
                   </button>
-                  <button
-                    type="button"
-                    className="btn-icon"
+                  <button 
+                    type="button" 
+                    className="btn-icon" 
                     onClick={() => deleteProduct.mutate(product._id)}
                     style={{ color: 'var(--color-on-surface-variant)', borderColor: 'var(--color-outline-variant)' }}
                   >
@@ -268,8 +268,8 @@ Write only the description, no extra formatting or labels.`
                   <button
                     type="button"
                     className="btn btn-sm"
-                    style={{
-                      background: 'var(--color-primary-fixed)',
+                    style={{ 
+                      background: 'var(--color-primary-fixed)', 
                       color: 'var(--color-primary)',
                       fontSize: '0.75rem',
                       padding: '0.25rem 0.6rem',
@@ -295,7 +295,7 @@ Write only the description, no extra formatting or labels.`
                 <span>Price <span style={{ color: 'var(--color-error)' }}>*</span></span>
                 <input type="number" step="0.01" min="0" placeholder="0.00" {...form.register('price')} required />
               </label>
-
+              
               <label>
                 <span>Sale Price</span>
                 <input type="number" step="0.01" min="0" placeholder="0.00" {...form.register('salePrice')} />
@@ -312,7 +312,7 @@ Write only the description, no extra formatting or labels.`
                   ))}
                 </select>
               </label>
-
+              
               <label>
                 <span>Stock</span>
                 <input type="number" min="0" placeholder="0" {...form.register('stock')} />
@@ -327,7 +327,7 @@ Write only the description, no extra formatting or labels.`
                 />
                 <small style={{ color: 'var(--color-outline)' }}>Separate multiple URLs with commas</small>
               </label>
-
+              
               <label className="full">
                 <span>Tags</span>
                 <input

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ── NEXUS Admin Design Tokens ─────────────────────────── */
+:root {
+  /* Primary — vivid orange-red */
+  --color-primary:              #e8460a;
+  --color-primary-container:    #c73b08;
+  --color-on-primary:           #ffffff;
+  --color-on-primary-container: #ffd8c9;
+  --color-primary-fixed:        #fde8df;
+  --color-primary-fixed-dim:    #f9c5ae;
+
+  /* Secondary — warm amber */
+  --color-secondary:            #f5a623;
+  --color-secondary-container:  #fdf0da;
+  --color-on-secondary:         #1a1207;
+  --color-on-secondary-container: #7a4e00;
+
+  /* Tertiary — teal */
+  --color-tertiary:             #2a9d8f;
+  --color-tertiary-container:   #e0f5f3;
+  --color-on-tertiary:          #ffffff;
+
+  /* Surface / Background — warm off-white */
+  --color-background:                   #faf8f5;
+  --color-on-background:                #1c1410;
+  --color-surface:                      #faf8f5;
+  --color-surface-container-lowest:     #ffffff;
+  --color-surface-container-low:        #f5f1ec;
+  --color-surface-container:            #eee9e2;
+  --color-surface-container-high:       #e6dfd6;
+  --color-on-surface:                   #1c1410;
+  --color-on-surface-variant:           #6b5e52;
+  --color-inverse-surface:              #342b24;
+  --color-inverse-on-surface:           #f5ede6;
+
+  --color-outline:          #9c8d83;
+  --color-outline-variant:  #d6cdc6;
+
+  --color-error:              #d32f2f;
+  --color-on-error:           #ffffff;
+  --color-error-container:    #fde2e2;
+
+  /* Admin sidebar — deep warm charcoal */
+  --admin-sidebar-bg:        #1c1410;
+  --admin-sidebar-text:      rgba(245, 237, 230, 0.65);
+  --admin-sidebar-active:    #ffffff;
+  --admin-sidebar-active-bg: rgba(232, 70, 10, 0.25);
+  --admin-topbar-bg:         #ffffff;
+  --admin-content-bg:        #f5f1ec;
+
+  /* Shape */
+  --radius-sm:  4px;
+  --radius:     8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--admin-content-bg);
+  color: var(--color-on-surface);
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+/* ── Utilities ──────────────────────────────────────────── */
+.text-primary   { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-muted     { color: var(--color-outline); }
+.text-error     { color: var(--color-error); }
+.text-display   { font-family: var(--font-display); }
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-surface-container);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.page-center {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+}

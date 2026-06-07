@@ -1,0 +1,18 @@
+Frontend
+# API Configuration
+VITE_API_URL=https://fyp-wogy.onrender.com/api
+VITE_GEMINI_API_KEY=AIzaSyBm8uGnSTQO_6fF8bdCwAtkZFu7ADgxm78
+
+
+backend
+PORT=5000
+MONGODB_URI=mongodb+srv://saqibarshad429_db_user:Y0eo0k5d7WIPAcvF@cluster0.cyz27cg.mongodb.net/?appName=Cluster0
+JWT_SECRET=replace_with_long_random_string
+CLIENT_URL=http://localhost:5173
+ADMIN_URL=http://localhost:5174
+
+
+admin:
+# API Configuration
+VITE_API_URL=https://fyp-wogy.onrender.com/api
+VITE_GEMINI_API_KEY=AIzaSyBm8uGnSTQO_6fF8bdCwAtkZFu7ADgxm78

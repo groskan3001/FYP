@@ -1,0 +1,128 @@
+/* NEXUS Design System — Bold Commerce */
+@import "tailwindcss";
+
+:root {
+  /* Typography */
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  /* ─── Core Palette ─── */
+  --color-primary:              #e8460a;   /* vivid orange-red */
+  --color-primary-container:    #c73b08;   /* deeper red-orange */
+  --color-on-primary:           #ffffff;
+  --color-on-primary-container: #ffd8c9;
+  --color-primary-fixed:        #fde8df;
+  --color-primary-fixed-dim:    #f9c5ae;
+  --color-inverse-primary:      #ffa07a;
+
+  --color-secondary:            #f5a623;   /* warm amber */
+  --color-secondary-container:  #fdf0da;
+  --color-on-secondary:         #1a1207;
+  --color-on-secondary-container: #7a4e00;
+  --color-secondary-fixed:      #fef3e2;
+  --color-secondary-fixed-dim:  #fada9f;
+
+  --color-tertiary:             #2a9d8f;   /* teal accent */
+  --color-tertiary-container:   #e0f5f3;
+  --color-on-tertiary:          #ffffff;
+  --color-on-tertiary-container: #1a5e56;
+  --color-tertiary-fixed:       #b2e8e3;
+  --color-tertiary-fixed-dim:   #7ecfc7;
+
+  /* ─── Surface & Background ─── */
+  --color-background:    #faf8f5;   /* warm off-white */
+  --color-on-background: #1c1410;   /* near-black warm */
+  --color-surface:       #faf8f5;
+  --color-surface-dim:   #ede8e2;
+  --color-surface-bright: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low:    #f5f1ec;
+  --color-surface-container:        #eee9e2;
+  --color-surface-container-high:   #e6dfd6;
+  --color-surface-container-highest: #dfd7cc;
+  --color-on-surface:         #1c1410;
+  --color-on-surface-variant: #6b5e52;
+  --color-inverse-surface:    #342b24;
+  --color-inverse-on-surface: #f5ede6;
+  --color-surface-tint:       #e8460a;
+  --color-surface-variant:    #f0e9e1;
+
+  --color-outline:         #9c8d83;
+  --color-outline-variant: #d6cdc6;
+
+  --color-error:              #d32f2f;
+  --color-on-error:           #ffffff;
+  --color-error-container:    #fde2e2;
+  --color-on-error-container: #8b0000;
+
+  /* ─── Semantic Aliases ─── */
+  --bg-app:       var(--color-background);
+  --bg-card:      var(--color-surface-container-lowest);
+  --border-muted: var(--color-outline-variant);
+  --text-main:    var(--color-on-background);
+  --text-muted:   var(--color-on-surface-variant);
+  --brand:        var(--color-primary);
+  --accent:       var(--color-secondary);
+  --success:      var(--color-tertiary);
+  --danger:       var(--color-error);
+  --warning:      var(--color-secondary);
+
+  /* ─── Shape ─── */
+  --radius-sm:  0.25rem;
+  --radius:     0.5rem;
+  --radius-md:  0.75rem;
+  --radius-lg:  1rem;
+  --radius-xl:  1.5rem;
+  --radius-full: 9999px;
+
+  /* ─── Spacing ─── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --section-y: clamp(3rem, 5vw, 5rem);
+  --gutter:   24px;
+  --margin-desktop: 32px;
+  --margin-mobile:  16px;
+  --page-y: clamp(2rem, 4vw, 3rem);
+
+  /* ─── Shadows (warm-tinted) ─── */
+  --shadow-soft:     0 2px 8px rgba(232, 70, 10, 0.07);
+  --shadow-card:     0 4px 16px rgba(28, 20, 16, 0.09);
+  --shadow-elevated: 0 8px 32px rgba(28, 20, 16, 0.13);
+
+  /* ─── Typography Scale ─── */
+  --font-display:  'Playfair Display', Georgia, serif;
+  --font-body:     'DM Sans', sans-serif;
+
+  color: var(--color-on-background);
+  background-color: var(--color-background);
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-app);
+  color: var(--text-main);
+}
+
+img { max-width: 100%; display: block; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+a { text-decoration: none; color: inherit; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+::selection {
+  background: rgba(232, 70, 10, 0.15);
+  color: #1c1410;
+}
